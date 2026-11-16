@@ -560,7 +560,7 @@
 			if(!shuttle)
 				balloon_alert(usr, "not linked!")
 				return TRUE
-			var/area_name = params["name"]
+			var/area_name = html_encode(params["name"])
 			if(!area_name)
 				balloon_alert(usr, "no name given!")
 				return TRUE
@@ -574,7 +574,7 @@
 				balloon_alert(usr, "invalid room!")
 				return TRUE
 			var/area/shuttle/custom/new_area = new()
-			new_area.name = area_name
+			new_area.setup(area_name)
 			shuttle.shuttle_areas[new_area] = TRUE
 			set_turfs_to_area(turfs, new_area)
 			new_area.reg_in_areas_in_z()
@@ -653,7 +653,7 @@
 			if(current_area == default_area)
 				balloon_alert(usr, "can't rename default area!")
 				return TRUE
-			var/new_name = params["name"]
+			var/new_name = html_encode(params["name"])
 			if(!new_name)
 				balloon_alert(usr, "no name given!")
 				return TRUE
