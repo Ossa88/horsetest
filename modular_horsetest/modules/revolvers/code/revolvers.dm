@@ -12,7 +12,7 @@
 	recoil = 0.5
 	spread = 5
 
-	can_modify_ammo = FALSE
+	//can_modify_ammo = FALSE
 
 /obj/item/gun/ballistic/revolver/c38/fitzspecial/update_icon_state()
 	. = ..()
@@ -34,7 +34,7 @@
 	fire_delay = 0.2 SECONDS
 	recoil = 0.5
 
-	can_modify_ammo = FALSE
+	//can_modify_ammo = FALSE
 
 /obj/item/gun/ballistic/revolver/c38/chiefsspecial/update_icon_state()
 	. = ..()
@@ -53,7 +53,7 @@
 	recoil = 0.4
 	spread = -2
 
-	can_modify_ammo = FALSE
+	//can_modify_ammo = FALSE
 
 /obj/item/gun/ballistic/revolver/c38/model10classic/update_icon_state()
 	. = ..()
@@ -72,7 +72,7 @@
 	recoil = 0.3
 	spread = -4
 
-	can_modify_ammo = FALSE
+	//can_modify_ammo = FALSE
 
 /obj/item/gun/ballistic/revolver/c38/model10bull/update_icon_state()
 	. = ..()
@@ -92,12 +92,12 @@
 	recoil = 0.6
 	spread = -6
 
-	can_modify_ammo = TRUE
+	/*can_modify_ammo = TRUE
 	initial_caliber = CALIBER_38
 	initial_fire_sound = 'sound/items/weapons/gun/revolver/shot.ogg'
 	alternative_caliber = CALIBER_357
 	alternative_fire_sound = 'sound/items/weapons/gun/revolver/shot_alt.ogg'
-	alternative_ammo_misfires = FALSE
+	alternative_ammo_misfires = FALSE*/
 
 /obj/item/gun/ballistic/revolver/model19/update_icon_state()
 	. = ..()
@@ -108,7 +108,7 @@
 	if(!.)
 		return
 
-	if(magazine.caliber == CALIBER_357)
+	/*if(magazine.caliber == CALIBER_357)
 		projectile_damage_multiplier = 1.0
 	else
-		projectile_damage_multiplier = 1.28
+		projectile_damage_multiplier = 1.28*/

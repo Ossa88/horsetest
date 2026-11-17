@@ -13,12 +13,13 @@
 	unsuitable_atmos_damage = 0
 	unsuitable_cold_damage = 0
 	unsuitable_heat_damage = 0
-	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 0, STAMINA = 0, OXY = 0)
 	ai_controller = /datum/ai_controller/basic_controller/simple/simple_hostile_obstacles
 	mouse_opacity = MOUSE_OPACITY_ICON // Ensure mobs are clickable/targetable
 	density = TRUE // Ensure mobs can be hit by projectiles
 	/// What tier is this mob? Used for spawning based on difficulty
 	var/tier = 1
+	/// I actually don't know if this does anything but it wasn't defined and I need this to compile - Mac, 2026
+	var/damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 0, STAMINA = 0, OXY = 0)
 
 /mob/living/basic/dungeon_mob/Initialize(mapload)
 	. = ..()
@@ -384,7 +385,7 @@
 	START_PROCESSING(SSobj, src)
 
 /mob/living/basic/dungeon_mob/fiend/process(seconds_per_tick)
-	if(stat != CONSCIOUS)
+	if(stat != STABLE)
 		return
 	// Auto-use abilities when off cooldown
 	for(var/datum/action/cooldown/ability in actions)

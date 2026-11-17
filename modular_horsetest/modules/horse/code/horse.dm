@@ -89,7 +89,7 @@
 	AddElementTrait(TRAIT_WADDLING, INNATE_TRAIT, /datum/element/waddling)
 	var/static/list/food_types = list(
 		/obj/item/food/grown/apple = 15,
-		/obj/item/food/grown/carrot = 15,
+		/obj/item/food/grown/carrotlike/carrot = 15,
 		/obj/item/food/grown/sugarcane = 10,
 		/obj/item/food/horse_supplement = 20,
 	)
@@ -141,7 +141,7 @@
 /mob/living/basic/horse/proc/handle_taming_food(atom/food, mob/living/feeder)
 	var/static/list/taming_foods = list(
 		/obj/item/food/grown/apple,
-		/obj/item/food/grown/carrot,
+		/obj/item/food/grown/carrotlike/carrot,
 		/obj/item/food/grown/sugarcane,
 	)
 	if(!is_type_in_list(food, taming_foods))
@@ -332,11 +332,6 @@
 	balloon_alert(tamer, "tamed!")
 	new /obj/effect/temp_visual/heart(loc)
 	playsound(src, 'sound/mobs/non-humanoids/pony/whinny01.ogg', 60)
-	ai_controller.replace_planning_subtrees(list(
-		/datum/ai_planning_subtree/find_nearest_thing_which_attacked_me_to_flee,
-		/datum/ai_planning_subtree/flee_target,
-		/datum/ai_planning_subtree/random_speech/pony/tamed,
-	))
 	my_owner = WEAKREF(tamer)
 	to_chat(tamer, span_notice("[src] now recognizes you as [p_their()] owner!"))
 /mob/living/basic/horse/Destroy()
@@ -456,7 +451,7 @@
 /mob/living/basic/horse/proc/can_mate()
 	if(!can_be_used())
 		return FALSE
-	if(stat != CONSCIOUS)
+	if(stat != STABLE)
 		return FALSE
 	if(gender == FEMALE && length(eggs) > 0)
 		return FALSE // Already pregnant
@@ -641,7 +636,7 @@
 
 /mob/living/basic/horse/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armour_penetration)
 	. = ..()
-	if (prob(33))
+	if (prob(35))
 		whinny_angrily()
 
 /mob/living/basic/horse/melee_attack(atom/target, list/modifiers, ignore_cooldown = FALSE)
@@ -651,19 +646,20 @@
 	whinny_angrily()
 
 /datum/ai_controller/basic_controller/horse
+	behavior_tree_json = "modular_horsetest/modules/horse/code/horse.bt.json"
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 	)
 	ai_traits = PASSIVE_AI_FLAGS
 	ai_movement = /datum/ai_movement/basic_avoidance
-	idle_behavior = /datum/idle_behavior/idle_random_walk
+	/*idle_behavior = /datum/idle_behavior/idle_random_walk
 	planning_subtrees = list(
 		/datum/ai_planning_subtree/find_nearest_thing_which_attacked_me_to_flee,
 		/datum/ai_planning_subtree/flee_target,
 		/datum/ai_planning_subtree/target_retaliate,
 		/datum/ai_planning_subtree/basic_melee_attack_subtree,
 		/datum/ai_planning_subtree/random_speech/pony,
-	)
+	)*/
 
 /mob/living/basic/horse/proc/pick_horse_name()
 	var/static/list/horse_names
