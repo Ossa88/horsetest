@@ -141,7 +141,7 @@
 /mob/living/basic/horse/proc/handle_taming_food(atom/food, mob/living/feeder)
 	var/static/list/taming_foods = list(
 		/obj/item/food/grown/apple,
-		/obj/item/food/grown/carrot,
+		/obj/item/food/grown/carrotlike/carrot,
 		/obj/item/food/grown/sugarcane,
 	)
 	if(!is_type_in_list(food, taming_foods))
@@ -636,7 +636,7 @@
 
 /mob/living/basic/horse/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armour_penetration)
 	. = ..()
-	if (prob(33))
+	if (prob(35))
 		whinny_angrily()
 
 /mob/living/basic/horse/melee_attack(atom/target, list/modifiers, ignore_cooldown = FALSE)
@@ -646,7 +646,7 @@
 	whinny_angrily()
 
 /datum/ai_controller/basic_controller/horse
-	behavior_tree_json = 'modular_horsetest/modules/horse/code/horse.bt.json'
+	behavior_tree_json = "modular_horsetest/modules/horse/code/horse.bt.json"
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 	)

@@ -53,7 +53,7 @@
 	recoil = 0.4
 	spread = -2
 
-	can_modify_ammo = FALSE
+	//can_modify_ammo = FALSE
 
 /obj/item/gun/ballistic/revolver/c38/model10classic/update_icon_state()
 	. = ..()

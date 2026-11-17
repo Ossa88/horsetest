@@ -385,7 +385,7 @@
 	START_PROCESSING(SSobj, src)
 
 /mob/living/basic/dungeon_mob/fiend/process(seconds_per_tick)
-	if(stat != CONSCIOUS)
+	if(stat != STABLE)
 		return
 	// Auto-use abilities when off cooldown
 	for(var/datum/action/cooldown/ability in actions)
