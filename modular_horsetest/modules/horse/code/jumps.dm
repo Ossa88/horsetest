@@ -11,18 +11,13 @@
 	bar_material = 2 // WOOD
 	var/min_strength_stat = 20
 	var/jump_height = 10
-	/// Stops the "not fast enough" warning from spamming while a rider keeps pushing into the jump.
-	COOLDOWN_DECLARE(refuse_message_cooldown)
 
 /obj/structure/barricade/horse_jump/Initialize(mapload)
 	. = ..()
-	var/static/list/loc_connections = list(
-		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
-	)
-	AddElement(/datum/element/connect_loc, loc_connections)
 	AddElement(/datum/element/simple_rotation)
 	var/static/list/tool_behaviors = list(TOOL_WRENCH = list(SCREENTIP_CONTEXT_LMB = "Anchor/Unanchor"))
 	AddElement(/datum/element/contextual_screentip_tools, tool_behaviors)
+	AddComponent(/datum/component/horse_jumpable, jump_height = jump_height, min_strength_stat = min_strength_stat)
 
 /obj/structure/barricade/horse_jump/examine(mob/user)
 	. = ..()
@@ -42,55 +37,6 @@
 /obj/structure/barricade/proc/check_anchored(checked_anchored)
 	if(anchored == checked_anchored)
 		return TRUE
-
-// This gets called constantly (movement, pathfinding), so it must stay free of side effects.
-/obj/structure/barricade/horse_jump/CanAllowThrough(atom/movable/mover, border_dir)
-	// Default barricade pass logic (projectiles, etc.) still applies.
-	. = ..()
-	if(.)
-		return TRUE
-
-	// Riders follow their horse onto the jump after it has already cleared it.
-	if(isliving(mover))
-		var/mob/living/rider = mover
-		if(istype(rider.buckled, /mob/living/basic/horse) && rider.buckled.loc == loc)
-			return TRUE
-
-	var/mob/living/basic/horse/mount = mover
-	if(!istype(mount))
-		return FALSE
-
-	return mount.strength >= min_strength_stat
-
-/obj/structure/barricade/horse_jump/Bumped(atom/movable/bumped_atom)
-	. = ..()
-	var/mob/living/basic/horse/mount = bumped_atom
-	if(!istype(mount) || !COOLDOWN_FINISHED(src, refuse_message_cooldown))
-		return
-	COOLDOWN_START(src, refuse_message_cooldown, 2 SECONDS)
-	for(var/mob/living/rider in mount.buckled_mobs)
-		to_chat(rider, span_warning("[mount] isn't fast enough to clear [src]!"))
-
-/obj/structure/barricade/horse_jump/proc/on_entered(datum/source, atom/movable/arrived, atom/old_loc, list/atom/old_locs)
-	SIGNAL_HANDLER
-	var/mob/living/basic/horse/mount = arrived
-	if(!istype(mount))
-		return
-
-	if(length(mount.buckled_mobs))
-		var/mob/living/rider = mount.buckled_mobs[1]
-		visible_message(span_notice("[rider] jumps [mount] over [src]!"))
-	else
-		visible_message(span_notice("[mount] leaps over [src]!"))
-	mount.leap(jump_height)
-	if(prob(20))
-		playsound(src, 'sound/mobs/non-humanoids/pony/whinny01.ogg', 40, vary = TRUE)
-	// Some slip code stolen from `code/game/turfs/open/_open.dm`. Stops horses from landing on the tile.
-	var/olddir = mount.dir
-	mount.moving_diagonally = 0
-	var/turf/target = get_ranged_target_turf(mount, olddir, 1)
-	mount.AddComponent(/datum/component/force_move, target, FALSE)
-
 
 /obj/structure/barricade/horse_jump/crossrail	// exists solely to make admin spawning easier
 
