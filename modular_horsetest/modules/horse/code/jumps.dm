@@ -60,6 +60,15 @@
 		visible_message(span_notice("[rider] jumps [mount] over [src]!"))
 	else
 		visible_message(span_notice("[mount] leaps over [src]!"))
+	mount.leap(jump_height)
+	if(prob(20))
+		playsound(src, 'sound/mobs/non-humanoids/pony/whinny01.ogg', 40, vary = TRUE)
+	// Some slip code stolen from `code/game/turfs/open/_open.dm`. Stops horses from landing on the tile.
+	var/olddir = mount.dir
+	mount.moving_diagonally = 0
+	var/turf/target = get_ranged_target_turf(mount, olddir, 1)
+	mount.AddComponent(/datum/component/force_move, target, FALSE)
+
 
 /obj/structure/barricade/horse_jump/crossrail	// exists solely to make admin spawning easier
 

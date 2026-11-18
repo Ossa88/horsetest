@@ -1,6 +1,7 @@
 #define HORSE_RETIREMENT_AGE 30
 #define HORSE_WILD_AGE_MIN 10
 #define HORSE_WILD_AGE_MAX 15
+#define ANIM_TAG_LEAP "leap"
 
 /mob/living/basic/horse
 	name = "horse"
@@ -88,7 +89,7 @@
 	AddElement(/datum/element/pet_bonus, "whinny")
 	AddElement(/datum/element/ai_retaliate)
 	AddElement(/datum/element/ai_flee_while_injured)
-	AddElementTrait(TRAIT_WADDLING, INNATE_TRAIT, /datum/element/waddling)
+	//AddElementTrait(TRAIT_WADDLING, INNATE_TRAIT, /datum/element/waddling)
 	var/static/list/food_types = list(
 		/obj/item/food/grown/apple = 15,
 		/obj/item/food/grown/carrotlike/carrot = 15,
@@ -638,6 +639,15 @@
 		'sound/mobs/non-humanoids/pony/whinny02.ogg',
 		'sound/mobs/non-humanoids/pony/whinny03.ogg'
 	)), 60)
+
+/mob/living/basic/horse/proc/leap(height = 12 /* How high, sir? */ )
+	animate(src, flags = ANIMATION_END_NOW, tag = ANIM_TAG_LEAP)
+	animate(src, pixel_y = height, time = 0.21 SECONDS, flags = ANIMATION_RELATIVE, easing = CUBIC_EASING|EASE_OUT, tag = ANIM_TAG_LEAP)
+	animate(pixel_y = -height, time = 0.21 SECONDS, flags = ANIMATION_RELATIVE, easing = CUBIC_EASING|EASE_IN)
+	for(var/mob/living/rider in src.buckled_mobs)
+		animate(rider, flags = ANIMATION_END_NOW, tag = ANIM_TAG_LEAP)
+		animate(rider, pixel_y = height, time = 0.21 SECONDS, flags = ANIMATION_RELATIVE, easing = CUBIC_EASING|EASE_OUT, tag = ANIM_TAG_LEAP)
+		animate(pixel_y = -height, time = 0.21 SECONDS, flags = ANIMATION_RELATIVE, easing = CUBIC_EASING|EASE_IN)
 
 /mob/living/basic/horse/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armour_penetration)
 	. = ..()
