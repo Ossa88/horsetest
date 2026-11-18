@@ -20,6 +20,28 @@
 		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
 	)
 	AddElement(/datum/element/connect_loc, loc_connections)
+	AddElement(/datum/element/simple_rotation)
+	var/static/list/tool_behaviors = list(TOOL_WRENCH = list(SCREENTIP_CONTEXT_LMB = "Anchor/Unanchor"))
+	AddElement(/datum/element/contextual_screentip_tools, tool_behaviors)
+
+/obj/structure/barricade/horse_jump/examine(mob/user)
+	. = ..()
+	if(anchored)
+		. += span_notice("It's [EXAMINE_HINT("bolted")] to the ground.")
+	else
+		. += span_notice("It can be [EXAMINE_HINT("bolted")] to the ground.")
+
+/obj/structure/barricade/horse_jump/wrench_act(mob/living/user, obj/item/tool)
+	. = ..()
+	to_chat(user, span_notice("You begin to [anchored ? "unfasten the jump from":"fasten the jump to"] the floor..."))
+	if(tool.use_tool(src, user, volume = 75, extra_checks = CALLBACK(src, PROC_REF(check_anchored), anchored)))
+		set_anchored(!anchored)
+		to_chat(user, span_notice("You [anchored ? "fasten the jump to":"unfasten the jump from"] the floor."))
+	return TRUE
+
+/obj/structure/barricade/proc/check_anchored(checked_anchored)
+	if(anchored == checked_anchored)
+		return TRUE
 
 // This gets called constantly (movement, pathfinding), so it must stay free of side effects.
 /obj/structure/barricade/horse_jump/CanAllowThrough(atom/movable/mover, border_dir)
