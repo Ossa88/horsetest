@@ -9,7 +9,8 @@
 	max_integrity = 120
 	proj_pass_rate = 60
 	bar_material = 2 // WOOD
-	var/min_speed_stat = 20
+	var/min_strength_stat = 20
+	var/jump_height = 10
 	/// Stops the "not fast enough" warning from spamming while a rider keeps pushing into the jump.
 	COOLDOWN_DECLARE(refuse_message_cooldown)
 
@@ -37,8 +38,7 @@
 	if(!istype(mount))
 		return FALSE
 
-	// Change mount.sspeed to mount.strength once we add strength stats.
-	return mount.sspeed >= min_speed_stat
+	return mount.strength >= min_strength_stat
 
 /obj/structure/barricade/horse_jump/Bumped(atom/movable/bumped_atom)
 	. = ..()
@@ -60,7 +60,6 @@
 		visible_message(span_notice("[rider] jumps [mount] over [src]!"))
 	else
 		visible_message(span_notice("[mount] leaps over [src]!"))
-	playsound(src, 'sound/mobs/non-humanoids/pony/whinny01.ogg', 50, vary = TRUE)
 
 /obj/structure/barricade/horse_jump/crossrail	// exists solely to make admin spawning easier
 
@@ -68,34 +67,38 @@
 	name = "vertical jump"
 	desc = "A barrier designed to be jumped over on horseback. This one looks fairly easy to clear."
 	icon_state = "vertical_low"
-	min_speed_stat = 30
+	min_strength_stat = 30
 
 /obj/structure/barricade/horse_jump/vertical/mid
 	name = "vertical jump"
 	desc = "A barrier designed to be jumped over on horseback. This one doesn't look that difficult to clear."
 	icon_state = "vertical_mid"
-	min_speed_stat = 40
+	min_strength_stat = 40
+	jump_height = 14
 
 /obj/structure/barricade/horse_jump/vertical/high
 	name = "vertical jump"
 	desc = "A barrier designed to be jumped over on horseback. This one looks a little difficult to clear."
 	icon_state = "vertical_high"
-	min_speed_stat = 50
+	min_strength_stat = 50
+	jump_height = 18
 
 /obj/structure/barricade/horse_jump/oxer
 	name = "oxer jump"
 	desc = "A barrier designed to be jumped over on horseback. This one looks fairly difficult to clear."
 	icon_state = "oxer_low"
-	min_speed_stat = 60
+	min_strength_stat = 60
 
 /obj/structure/barricade/horse_jump/oxer/mid
 	name = "oxer jump"
 	desc = "A barrier designed to be jumped over on horseback. This one looks very difficult to clear."
 	icon_state = "oxer_mid"
-	min_speed_stat = 70
+	min_strength_stat = 70
+	jump_height = 14
 
 /obj/structure/barricade/horse_jump/oxer/high
 	name = "oxer jump"
 	desc = "A barrier designed to be jumped over on horseback. This one looks incredibly difficult to clear."
 	icon_state = "oxer_high"
-	min_speed_stat = 90
+	min_strength_stat = 90
+	jump_height = 18

@@ -44,6 +44,8 @@
 	var/max_intelligence = 100
 	var/sspeed = 30
 	var/max_speed = 100
+	var/strength = 30
+	var/max_strength = 100
 	var/tamed_points = 150
 	var/age = 0
 	var/was_born = FALSE
@@ -559,6 +561,8 @@
 	data["maxIntelligence"] = max_intelligence
 	data["speed"] = sspeed
 	data["maxSpeed"] = max_speed
+	data["strength"] = strength
+	data["maxStrength"] = max_strength
 	data["age"] = age
 	data["retired"] = retired
 	data["maxAge"] = HORSE_RETIREMENT_AGE
@@ -571,7 +575,8 @@
 			"rarity" = breed.rarity,
 			"idealTemperament" = breed.ideal_temperament,
 			"idealIntelligence" = breed.ideal_intelligence,
-			"idealSpeed" = breed.ideal_speed
+			"idealSpeed" = breed.ideal_speed,
+			"idealStrength" = breed.ideal_strength
 		)
 	var/mob/living/owner = my_owner?.resolve()
 	data["owner"] = owner ? (owner.real_name || owner.name) : null
@@ -671,18 +676,21 @@
 	var/temperament
 	var/intelligence
 	var/sspeed
+	var/strength
 
 /datum/horse_genetics/New(mob/living/basic/horse/parent)
 	if(parent)
 		temperament = parent.temperament
 		intelligence = parent.intelligence
 		sspeed = parent.sspeed
+		strength = parent.strength
 
 /datum/horse_genetics/proc/copy()
 	var/datum/horse_genetics/new_genetics = new()
 	new_genetics.temperament = temperament
 	new_genetics.intelligence = intelligence
 	new_genetics.sspeed = sspeed
+	new_genetics.strength = strength
 	return new_genetics
 
 /datum/horse_genetics/proc/mutate()
@@ -692,6 +700,8 @@
 		intelligence += rand(-2, 2)
 	if(prob(10))
 		sspeed += rand(-3, 3)
+	if(prob(10))
+		strength += rand(-3, 3)
 
 /mob/living/basic/horse/foal
 	name = "foal"
