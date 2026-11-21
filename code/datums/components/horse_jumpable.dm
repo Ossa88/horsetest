@@ -44,11 +44,11 @@
 	var/mob/living/basic/horse/mount = mover
 
 	if(!istype(mount))
-		return COMSIG_COMPONENT_REFUSE_PASSAGE
+		return
 
 	if(mount.strength >= min_strength_stat)
 		return COMSIG_COMPONENT_PERMIT_PASSAGE
-	return COMSIG_COMPONENT_REFUSE_PASSAGE
+	return
 
 /datum/component/horse_jumpable/proc/on_entered(atom/source, atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	SIGNAL_HANDLER
@@ -57,9 +57,9 @@
 		return
 	if(length(mount.buckled_mobs))
 		var/mob/living/rider = mount.buckled_mobs[1]
-		source.visible_message(span_notice("[rider] jumps [mount] over [source]!"))
+		source.visible_message(span_notice("[rider] jumps [mount] over [parent]!"))
 	else
-		source.visible_message(span_notice("[mount] leaps over [source]!"))
+		source.visible_message(span_notice("[mount] leaps over [parent]!"))
 	mount.leap(jump_height)
 	// Some slip code stolen from `code/game/turfs/open/_open.dm`. Stops horses from landing on the tile.
 	var/olddir = mount.dir
@@ -87,9 +87,9 @@
 	var/atom/listener = parent
 	if(QDELETED(listener) || QDELETED(listener.loc))
 		return
-	RegisterSignal(listener.loc, COMSIG_ATOM_ENTERED, PROC_REF(on_entered))
+	RegisterSignal(listener.loc, COMSIG_ATOM_ENTERED, PROC_REF(on_entered), override = TRUE)
 
 /datum/component/horse_jumpable/proc/unregister_loc_sig(atom/old_loc)
 	if(isnull(old_loc))
 		return
-	RegisterSignal(old_loc, COMSIG_ATOM_ENTERED)
+	UnregisterSignal(old_loc, COMSIG_ATOM_ENTERED)
