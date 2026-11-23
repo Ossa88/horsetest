@@ -545,3 +545,5 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/horse_holdie, 32)
 	. += span_notice("Summon your horses for the shift, or recall them early from the holdie.")
 	. += span_notice("No need to store them back before the round ends — stats sync automatically.")
 	. += span_notice("Horses age one year the first time they are summoned each round. They retire at age [HORSE_RETIREMENT_AGE].")
+
+#undef MAX_HORSE_SLOTS
