@@ -22,10 +22,10 @@
 
 /obj/machinery/power/supermatter_crystal/shard
 	icon = 'icons/obj/machines/engine/supermatter.dmi'
-	base_icon_state = "hm"
-	icon_state = "hm"
+	//base_icon_state = "hm" //These need to be temp removed so that the crystal uses the correct sprite above. Temp solution until the proper sprite is created.
+	//icon_state = "hm"
 
 /obj/machinery/power/supermatter_crystal/small
 	icon = 'icons/obj/machines/engine/supermatter.dmi'
-	base_icon_state = "hm"
-	icon_state = "hm"
+	//base_icon_state = "hm"
+	//icon_state = "hm"
