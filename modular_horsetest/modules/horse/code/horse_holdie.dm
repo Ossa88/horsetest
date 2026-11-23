@@ -1,3 +1,8 @@
+#define HORSE_RETIREMENT_AGE 30
+#define HORSE_WILD_AGE_MIN 10
+#define HORSE_WILD_AGE_MAX 15
+#define ANIM_TAG_LEAP "leap"
+
 #define MAX_HORSE_SLOTS 6
 GLOBAL_LIST_EMPTY(horse_holdie_cache)
 GLOBAL_LIST_EMPTY(horse_retired_cache)
@@ -547,3 +552,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/horse_holdie, 32)
 	. += span_notice("Horses age one year the first time they are summoned each round. They retire at age [HORSE_RETIREMENT_AGE].")
 
 #undef MAX_HORSE_SLOTS
+
+#undef HORSE_RETIREMENT_AGE
+#undef HORSE_WILD_AGE_MIN
+#undef HORSE_WILD_AGE_MAX
+#undef ANIM_TAG_LEAP

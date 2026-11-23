@@ -6,6 +6,7 @@ GLOBAL_LIST_EMPTY(horse_competition_history)
 #define COMP_STATE_REGISTRATION "registration"
 #define COMP_STATE_IN_PROGRESS "in_progress"
 #define COMP_STATE_FINISHED "finished"
+
 /datum/horse_competition
 	var/id
 	var/name = "Horse Competition"
@@ -403,3 +404,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/horse_competition_board, 32)
 		return CLICK_ACTION_BLOCKING
 	ui_interact(user)
 	return CLICK_ACTION_SUCCESS
+
+#undef COMPETITION_RACE
+#undef COMPETITION_SHOW
+#undef COMPETITION_TRIAL
+#undef COMP_STATE_REGISTRATION
+#undef COMP_STATE_IN_PROGRESS
+#undef COMP_STATE_FINISHED
