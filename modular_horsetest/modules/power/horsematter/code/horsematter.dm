@@ -21,9 +21,11 @@
 	light_mask_icon = "hm-glow" // This is a temp solution to fix the missing sprites until the proper sprite is created.
 
 /obj/machinery/power/supermatter_crystal/shard
+	icon = 'icons/obj/machines/engine/supermatter.dmi'
 	base_icon_state = "hm"
 	icon_state = "hm"
 
 /obj/machinery/power/supermatter_crystal/small
+	icon = 'icons/obj/machines/engine/supermatter.dmi'
 	base_icon_state = "hm"
 	icon_state = "hm"

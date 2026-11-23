@@ -1112,6 +1112,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		QDEL_NULL(item)
 		RegisterSignal(src, COMSIG_ATOM_EXAMINE, PROC_REF(holiday_hat_examine))
 		if(istype(src, /obj/machinery/power/supermatter_crystal/shard))
+			icon = 'icons/obj/machines/engine/supermatter.dmi'
 			add_overlay(mutable_appearance(icon, "santa_hat_shard"))
 		else
 			add_overlay(mutable_appearance(icon, "santa_hat"))
