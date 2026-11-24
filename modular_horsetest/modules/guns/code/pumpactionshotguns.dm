@@ -2,6 +2,9 @@
 	icon = 'modular_horsetest/modules/guns/sprites/pumpactionshotguns.dmi'
 	obj_flags = UNIQUE_RENAME
 	slot_flags = ITEM_SLOT_BACK
+	icon_state = "stakeout" // This item needs a temp icon state in case it somehow magically is spawned to satisfy the icon_state unit test.
+
+	// All of the following require a back slot icon state created for the icons/mob/clothing/back.dmi file. Will need to determine how to modularize it.
 
 /obj/item/gun/ballistic/shotgun/horsetest/stakeout
 	name = "\improper Stakeout Shotgun"

@@ -8,6 +8,8 @@
 
 	SET_BASE_PIXEL(-8, 0)
 
+	icon_state = "110_closed " // This item needs a temp icon state in case it somehow magically is spawned to satisfy the icon_state unit test.
+
 /obj/item/gun/ballistic/rifle/boltaction/horsetest/update_icon_state()
 	. = ..()
 	icon_state = "[base_icon_state]_[bolt_locked ? "open" : "closed"]"
@@ -50,6 +52,7 @@
 	. = ..()
 	AddComponent(/datum/component/scope, range_modifier = 1.5)
 
+// This will require a back slot icon state created for the icons/mob/clothing/back.dmi file. Will need to determine how to modularize it.
 /obj/item/gun/ballistic/rifle/boltaction/horsetest/sawedoff
 	name = "\improper Sawn-Off Double Barrel"
 	desc = "A break-action double-barreled shotgun cut down to pocket size. Devastating up close, useless at range."

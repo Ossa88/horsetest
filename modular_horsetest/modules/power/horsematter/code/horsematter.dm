@@ -16,6 +16,7 @@
 /obj/machinery/power/supermatter_crystal
 	icon = 'modular_horsetest/modules/power/horsematter/icons/horsematter.dmi'
 	base_icon_state = "hm"
+	icon_state = "hm"
 
 	light_mask_icon = "hm-glow" // This is a temp solution to fix the missing sprites until the proper sprite is created.
 
