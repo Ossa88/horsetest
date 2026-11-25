@@ -8,7 +8,7 @@
 
 	SET_BASE_PIXEL(-8, 0)
 
-	icon_state = "110_closed " // This item needs a temp icon state in case it somehow magically is spawned to satisfy the icon_state unit test.
+	icon_state = "110_closed" // This item needs a temp icon state in case it somehow magically is spawned to satisfy the icon_state unit test.
 
 /obj/item/gun/ballistic/rifle/boltaction/horsetest/update_icon_state()
 	. = ..()
