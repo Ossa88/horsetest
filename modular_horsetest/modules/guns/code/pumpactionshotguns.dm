@@ -5,14 +5,11 @@
 
 	// All of this is temp so that we can get passing tests
 
-	// This needs a temp icon state.
-	icon_state = "stakeout"
+	// I wonder if this will actually work
+	icon_state = null
 
-	// All of the following require a back slot icon state.
-	// worn_icon = 'modular_horsetest/modules/guns/sprites/back.dmi'
-
-	// Temp back slot icon state to get passing tests.
-	worn_icon_state = "bulldog"
+	// Nulling the icon state to hopefully get passing tests.
+	worn_icon_state = null
 
 /obj/item/gun/ballistic/shotgun/horsetest/stakeout
 	name = "\improper Stakeout Shotgun"
