@@ -74,3 +74,5 @@
 	pb_knockback = 3
 
 	SET_BASE_PIXEL(0, 0)
+
+	worn_icon_state = "clshotgun"
