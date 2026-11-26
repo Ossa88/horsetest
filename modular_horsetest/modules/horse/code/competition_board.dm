@@ -48,6 +48,7 @@ GLOBAL_LIST_EMPTY(horse_competition_history)
 
 /datum/horse_competition/Destroy()
 	GLOB.horse_competitions -= src
+	GLOB.horse_competition_history -= src
 	host_board = null
 	entrants = null
 	results = null
@@ -216,6 +217,7 @@ GLOBAL_LIST_EMPTY(horse_competition_history)
 
 /datum/horse_competition/proc/move_to_history()
 	GLOB.horse_competitions -= src
+	host_board = null
 	GLOB.horse_competition_history += src
 	while(length(GLOB.horse_competition_history) > 10)
 		var/datum/horse_competition/old = GLOB.horse_competition_history[1]
