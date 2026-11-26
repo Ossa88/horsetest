@@ -14,7 +14,7 @@
 	icon_state = null
 
 	//worn_icon = null //update when new custom icon is created for these items
-	worn_icon_state = riotshotgun
+	worn_icon_state = "riotshotgun"
 
 /obj/item/gun/ballistic/rifle/boltaction/horsetest/update_icon_state()
 	. = ..()

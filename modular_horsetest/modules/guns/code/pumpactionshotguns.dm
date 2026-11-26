@@ -21,7 +21,7 @@
 	spread = 8
 	projectile_damage_multiplier = 0.9
 
-	worn_icon_state = cshotgun
+	worn_icon_state = "cshotgun"
 
 /obj/item/gun/ballistic/shotgun/horsetest/sawnoff
 	name = "\improper Sawn-Off Pump Shotgun"
@@ -34,7 +34,7 @@
 	projectile_damage_multiplier = 0.85
 	pb_knockback = 3
 
-	worn_icon_state = riotshotgun
+	worn_icon_state = "riotshotgun"
 
 /obj/item/gun/ballistic/shotgun/horsetest/riot
 	name = "\improper Riot Pump Shotgun"
@@ -43,7 +43,7 @@
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/shot/horsetest/riot
 	fire_delay = 8 DECISECONDS
 
-	worn_icon_state = riotshotgun
+	worn_icon_state = "riotshotgun"
 
 /obj/item/gun/ballistic/shotgun/horsetest/tactical
 	name = "\improper Tactical Pump Shotgun"
@@ -53,7 +53,7 @@
 	projectile_damage_multiplier = 1.1
 	spread = -2
 
-	worn_icon_state = dshotgun
+	worn_icon_state = "dshotgun"
 
 /obj/item/gun/ballistic/shotgun/horsetest/extended
 	name = "\improper Extended Pump Shotgun"
@@ -64,7 +64,7 @@
 	projectile_damage_multiplier = 1.05
 	spread = -4
 
-	worn_icon_state = riotshotgun
+	worn_icon_state = "riotshotgun"
 
 /obj/item/ammo_box/magazine/internal/shot/horsetest/stakeout
 	name = "stakeout shotgun internal magazine"
