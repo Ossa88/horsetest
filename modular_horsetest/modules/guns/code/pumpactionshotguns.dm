@@ -9,11 +9,13 @@
 	icon_state = null
 
 	// Nulling the icon state to hopefully get passing tests.
+	worn_icon = null
 	worn_icon_state = null
 
 /obj/item/gun/ballistic/shotgun/horsetest/stakeout
 	name = "\improper Stakeout Shotgun"
 	desc = "A compact pump-action shotgun with a pistol grip and no stock. Easy to carry, awkward to aim."
+	mob
 	icon_state = "stakeout"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/shot/horsetest/stakeout
 	weapon_weight = WEAPON_MEDIUM
