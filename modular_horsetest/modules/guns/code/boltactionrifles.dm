@@ -74,6 +74,3 @@
 	pb_knockback = 3
 
 	SET_BASE_PIXEL(0, 0)
-
-	// Null icon state to hopefully get passing tests.
-	worn_icon_state = null
